@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    h2 MAPS Examples
+    div#map(class='map') 
+
+append links
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.2.0/ol.css')
+
+append scripts
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.2.0/ol.js')
+    script(src='/js/kv_wmts_utm33.js')
+

@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h2 MAPS Examples
+  hr
+
+  .row
+    .col-sm-4
+      a(href='/maps/kartverket_wmts_utm33', style='color: #fff')
+        .panel.panel-default(style='background-color: #000')
+          .panel-body
+            |  Kartverket wmts_utm33
+    .col-sm-4
+      a(href='/maps/kartverket_wms_c_mercator', style='color: #fff')
+        .panel.panel-default(style='background-color: #00abf0')
+          .panel-body
+            |  Kartverket wms-c mercator
+    .col-sm-4
+      a(href='/maps/kartverket_wmts_mercator', style='color: #fff')
+        .panel.panel-default(style='background-color: #3b5998')
+          .panel-body
+            |  Kartverket wmts mercator

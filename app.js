@@ -33,6 +33,7 @@ dotenv.load({ path: '.env.example' });
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
+const mapsController = require('./controllers/maps');
 const contactController = require('./controllers/contact');
 
 /**
@@ -107,7 +108,7 @@ app.use((req, res, next) => {
       !req.path.match(/\./)) {
     req.session.returnTo = req.path;
   } else if (req.user &&
-      req.path == '/account') {
+      req.path === '/account') {
     req.session.returnTo = req.path;
   }
   next();
@@ -134,6 +135,14 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+
+/**
+ * MAPS examples routes.
+ */
+app.get('/maps', mapsController.getMaps);
+app.get('/maps/kartverket_wmts_utm33', mapsController.getKartverket_wmts_utm33);
+app.get('/maps/kartverket_wms_c_mercator', mapsController.getKartverket_wms_c_mercator);
+app.get('/maps/kartverket_wmts_mercator', mapsController.getKartverket_wmts_mercator);
 
 /**
  * API examples routes.
@@ -225,7 +234,8 @@ app.use(errorHandler());
  * Start Express server.
  */
 app.listen(app.get('port'), () => {
-  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); 
+  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+
   console.log('  Press CTRL-C to stop\n');
 });
 
